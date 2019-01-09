@@ -116,6 +116,10 @@ uintptr_t get_slide_address(void) {
         [self.delegate handleCrashException:exceptionResult exceptionCategory:exceptionCategory extraInfo:info];
     }
     
+    if ([self.delegate respondsToSelector:@selector(handleCrashException:exceptionCategory:stack:extraInfo:)]) {
+        [self.delegate handleCrashException:exceptionMessage exceptionCategory:exceptionCategory stack:callStack extraInfo:info];
+    }
+    
 #ifdef DEBUG
     NSLog(@"================================JJException Start==================================");
     NSLog(@"JJException Type:%ld",(long)exceptionCategory);

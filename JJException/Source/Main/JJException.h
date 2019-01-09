@@ -44,6 +44,8 @@ typedef NS_OPTIONS(NSInteger,JJExceptionGuardCategory){
  */
 @protocol JJExceptionHandle<NSObject>
 
+@optional
+
 /**
  Crash message and extra info from current thread
  
@@ -51,8 +53,6 @@ typedef NS_OPTIONS(NSInteger,JJExceptionGuardCategory){
  @param info extraInfo,key and value
  */
 - (void)handleCrashException:(NSString*)exceptionMessage extraInfo:(nullable NSDictionary*)info;
-
-@optional
 
 /**
  Crash message,exceptionCategory, extra info from current thread
@@ -62,6 +62,11 @@ typedef NS_OPTIONS(NSInteger,JJExceptionGuardCategory){
  @param info extra info
  */
 - (void)handleCrashException:(NSString*)exceptionMessage exceptionCategory:(JJExceptionGuardCategory)exceptionCategory extraInfo:(nullable NSDictionary*)info;
+
+/**
+ * get out the crash stack
+ */
+- (void)handleCrashException:(NSString*)exceptionMessage exceptionCategory:(JJExceptionGuardCategory)exceptionCategory stack:(NSArray *)stack extraInfo:(nullable NSDictionary*)info;
 
 @end
 
